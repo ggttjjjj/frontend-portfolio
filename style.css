@@ -1,0 +1,163 @@
+:root {
+  color-scheme: dark;
+  --bg: #091410;
+  --card-bg: #151f1b;
+  --card-bg-hover: #1b2922;
+  --accent: #ef4266;
+  --text: #f4f6f4;
+  --text-dim: #93a29a;
+  --tag-bg: #302025;
+  --tag-text: #ee6a87;
+  --edge: #202b25;
+  --edge-hover: #405247;
+  --focus-ring: #ff8da4;
+  --font: "Segoe UI", Arial, "Microsoft YaHei", sans-serif;
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, .16);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(100% - 64px, 1180px);
+  margin-inline: auto;
+  padding-bottom: 48px;
+}
+
+/* 顶部标题区 */
+.intro {
+  text-align: center;
+  padding: 28px 0 128px;
+}
+
+.mark {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto 36px;
+}
+
+h1 {
+  font-size: clamp(32px, 4.7vw, 60px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.intro p {
+  margin-top: 24px;
+  color: var(--text-dim);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* 作品卡片网格 */
+.works {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  padding: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--edge);
+  border-radius: 30px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition:
+    transform .2s,
+    background .2s,
+    border-color .2s;
+}
+
+.card:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--edge-hover);
+  transform: translateY(-3px);
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.58;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 14px 14px 0 0;
+}
+
+.card-info {
+  padding: 20px 4px 8px;
+}
+
+h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 5px;
+}
+
+/* 前两张截图的主要内容集中在中部，居中裁切观感更好 */
+.card:nth-child(1) .shot,
+.card:nth-child(2) .shot {
+  object-position: center;
+}
+
+/* 平板尺寸 */
+@media (max-width: 800px) {
+  .wrap { width: calc(100% - 40px); }
+  .intro { padding-bottom: 80px; }
+  .works { gap: 16px; }
+  .card { padding: 14px; border-radius: 24px; }
+  h2 { font-size: 17px; }
+  .intro p { font-size: 16px; }
+}
+
+/* 手机尺寸 */
+@media (max-width: 600px) {
+  .wrap { max-width: 440px; }
+  .intro { padding: 28px 0 56px; }
+  .mark { margin-bottom: 28px; }
+  h1 { font-size: 32px; letter-spacing: -.6px; }
+  .intro p { margin-top: 16px; font-size: 14px; }
+  .works { grid-template-columns: 1fr; gap: 20px; }
+  .card { padding: 20px; border-radius: 30px; }
+  h2 { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
